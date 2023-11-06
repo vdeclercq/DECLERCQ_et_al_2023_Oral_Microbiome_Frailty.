@@ -1,25 +1,10 @@
 setwd("~/Desktop")
 library(readr)
-Frailty_taxa_metadata <- read_csv("Frailty_Project_csv_files_June2023/metadata_all_20June2023.csv")
-Frailty_taxa_metadata <- read_csv("Frailty_Project_csv_files_June2023/metadata_males_10OCT2023.csv")
-Frailty_taxa_metadata <- read_csv("Frailty_Project_csv_files_June2023/metadata_females_10OCT2023.csv")
-Frailty_taxa_metadata <- read_csv("Frailty_Project_csv_files_June2023/matched_females/metadata_females_10July2023_MATCHED.csv")
-
-Frailty_taxa_metadata <- read_csv("Frailty_Project_csv_files_June2023/metadata_all_NoSMOKERS_05July2023.csv")
+Frailty_taxa_metadata <- read_csv()
 
 Frailty_taxa_metadata <- as.data.frame(Frailty_taxa_metadata)
 rownames(Frailty_taxa_metadata) <- Frailty_taxa_metadata[,1]
 View(Frailty_taxa_metadata)
-
-quantile(Frailty_taxa_metadata$AGE, prob=c(0.25, 0.50, 0.75))
-
-hist(Frailty_taxa_metadata$AGE,main = "Histogram of Age", 
-     xlab = "Age (years)", col = "orange", breaks = 7, ylim=c(0,600),
-     cex.axis=1.5, cex.lab=1.5, cex.main=2)
-
-hist(Frailty_taxa_metadata$Frailty,main = "Histogram of Frailty", 
-     xlab = "Frailty Index", col = "blue", breaks = 7, ylim=c(0,600),
-     cex.axis=1.5, cex.lab=1.5, cex.main=2)
 
 #check that variables are ready as numeric or string variables
 print(sapply(Frailty_taxa_metadata, class))
@@ -30,11 +15,7 @@ Frailty_taxa_metadata$HEIGHT = as.numeric(filtered_metadata$HEIGHT)
 ##METADATA ANALYSIS - Descriptive analysis of covariates - sex, AGE, BMI, ETC.
 #CHECK FOR NORMALITY
 shapiro.test(Frailty_taxa_metadata$AGE)
-shapiro.test(Frailty_taxa_metadata$Frailty)
-shapiro.test(Frailty_taxa_metadata$WEIGHT)
-shapiro.test(Frailty_taxa_metadata$HEIGHT)
-shapiro.test(Frailty_taxa_metadata$BMI)
-shapiro.test(Frailty_taxa_metadata$VEG)
+
 
 
 #TABLES FOR MEDIAN, MEAN, QUARTILES - CONTINUOUS VARIABLES
@@ -77,11 +58,7 @@ DENTAL <- CrossTable(Frailty_taxa_metadata$DENTAL,
 #preprep data for analysis.
 #create taxa table (remove any extra columns & set row names)
 library(readr)
-taxa_table <- read_csv("Frailty_Project_csv_files_June2023/genera_rare_15June2023.csv")
-taxa_table <- read_csv("Frailty_Project_csv_files_June2023/genera_rare_females_04July2023.csv")
-taxa_table <- read_csv("Frailty_Project_csv_files_June2023/genera_rare_males_04July2023.csv")
-taxa_table <- read_csv("Frailty_Project_csv_files_June2023/genera_rare_MATCHED_females_24Oct2023.csv")
-
+taxa_table <- read_csv()
 
 taxa_table <- as.data.frame(taxa_table[,-c(1:2)])
 row.names(taxa_table) <- row.names(Frailty_taxa_metadata)
